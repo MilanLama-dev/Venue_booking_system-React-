@@ -1,4 +1,4 @@
-const venues = [
+export const venues = [
   {
     id: 1,
     name: "Grand Hall",
