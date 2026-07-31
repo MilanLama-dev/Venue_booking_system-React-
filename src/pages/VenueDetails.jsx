@@ -21,6 +21,7 @@ const VenueDetails = () => {
   }
 
   const handleBooking = () => {
+    localStorage.setItem("selectedVenue",JSON.stringify(venue))
     navigate("/confirm")
   }
 

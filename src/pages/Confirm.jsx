@@ -6,11 +6,26 @@ const Confirm = () => {
   const [date, setDate] = useState("")
   const navigate = useNavigate()
 
+  const venue = JSON.parse(localStorage.getItem("selectedVenue"))
+
+  if(!venue){
+    navigate("/venues")
+    return null
+  }
+
   const confirmBooking = () => {
     if(!date){
       alert("Please Select a date")
       return
     }
+
+  const booking = {
+    ...venue,
+    bookingDate = date,
+    status:"Confirmed",
+  }
+
+  localStorage.setItem("booking",JSON.stringify(booking))
 
     alert("Booking Successfull")
     navigate("/my-bookings")
