@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  
+  const navigate = useNavigate();
+
+  const loggedOut = () => {
+    localStorage.removeItem("loggedIn");
+    navigate("/");
+  };
+
   return (
     <nav className="bg-white shadow-md px-8 py-4 flex justify-between items-center">
       <Link to="/home" className="text-2xl font-bold text-blue-600">
@@ -17,12 +25,12 @@ const Navbar = () => {
         <Link to="/my-bookings" className="hover:text-blue-600 transition">
           My Bookings
         </Link>
-        <Link
-          to="/"
+        <button
+          onClick={loggedOut}
           className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
         >
           Logout
-        </Link>
+        </button>
       </div>
     </nav>
   );

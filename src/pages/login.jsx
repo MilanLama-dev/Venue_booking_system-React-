@@ -15,6 +15,7 @@ const Login = () => {
       return;
     }
 
+    localStorage.setItem("loggedIn", "true");
     navigate("/home");
   };
 
