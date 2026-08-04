@@ -8,7 +8,7 @@ const Mybooking = () => {
     const updateBooking = booking.filter(
       (b) => !(b.id === id && b.bookingDate === bookingDate)
     )
-    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+    localStorage.setItem("booking", JSON.stringify(updatedBooking));
     window.location.reload();
   };
 
@@ -23,7 +23,7 @@ const Mybooking = () => {
             My Booking
           </h1>
 
-          {!booking.length === 0 ? (
+          {booking.length === 0 ? (
             <div className="bg-white rounded-2xl shadow-lg p-10 text-center">
               <h2 className="text-2xl font-semibold">
                 No Bookings Yet
@@ -35,7 +35,8 @@ const Mybooking = () => {
             </div>
           ) : (
             booking.map((bookings) => (
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div key={`${bookings.id}-${bookings.bookingDate}`}
+             className="bg-white rounded-2xl shadow-xl overflow-hidden">
 
               <img
                 src={bookings.image}
@@ -72,7 +73,7 @@ const Mybooking = () => {
                 </div>
 
                 <button
-                  onClick={cancelBooking}
+                  onClick={cancelBooking(bookings.id, bookings.bookingDate)}
                   className="mt-8 w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg"
                 >
                   Cancel Booking
